@@ -1,0 +1,21 @@
+# Build and Binary directories
+bin/
+build/
+
+# Local reference and helper scripts
+documentation_reference/
+libs/
+*.sh
+*.txt
+!README.md
+
+# Temporary and lock files
+.~lock.*
+*.tmp
+*.log
+
+# Git ignore itself (optional, usually kept)
+# .gitignore
+
+# Dependencies (if any were in libs)
+# libs/
