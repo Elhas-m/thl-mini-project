@@ -1,5 +1,10 @@
-# 📊 RAPPORT FINAL - PROJET GLSimpleSQL
-## Interpréteur de Requêtes SQL Simplifiées
+# 📊 Rapport Final : Projet GLSimpleSQL
+### Interpréteur de Requêtes SQL Simplifiées
+
+[![Project Status: Completed](https://img.shields.io/badge/Status-Completed-success.svg)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#)
+[![Language: C](https://img.shields.io/badge/Language-C-orange.svg)](#)
+[![Tools: Flex & Bison](https://img.shields.io/badge/Tools-Flex%20%26%20Bison-red.svg)](#)
 
 ---
 
@@ -12,22 +17,22 @@
 
 ## 📑 TABLE DES MATIÈRES
 
-1. [Introduction](#introduction)
-2. [Dépôt GitHub](#github)
-3. [Analyse du Cahier des Charges](#analyse-cahier)
-4. [Architecture du Projet](#architecture)
-5. [Phase 1 : Analyse Lexicale (Flex)](#phase-1)
-6. [Phase 2 : Analyse Syntaxique (Bison)](#phase-2)
-7. [Phase 3 : Actions Sémantiques](#phase-3)
-8. [Tests et Validation](#tests)
-9. [Compilation et Utilisation](#compilation)
-10. [Conclusion](#conclusion)
-11. [Captures d'Écran](#captures)
-12. [Déclaration de Conformité](#conformite)
+- [1. Introduction](#1-introduction)
+- [2. Dépôt GitHub](#2-dépôt-github)
+- [3. Analyse du Cahier des Charges](#3-analyse-du-cahier-des-charges)
+- [4. Architecture du Projet](#4-architecture-du-projet)
+- [5. Phase 1 : Analyse Lexicale (Flex)](#5-phase-1--analyse-lexicale-flex)
+- [6. Phase 2 : Analyse Syntaxique (Bison)](#6-phase-2--analyse-syntaxique-bison)
+- [7. Phase 3 : Actions Sémantiques](#7-phase-3--actions-sémantiques)
+- [8. Tests et Validation](#8-tests-et-validation)
+- [9. Compilation et Utilisation](#9-compilation-et-utilisation)
+- [10. Conclusion](#10-conclusion)
+- [11. Captures d'Écran](#11-captures-décran)
+- [12. Déclaration de Conformité](#12-déclaration-de-conformité)
 
 ---
 
-## 1. INTRODUCTION {#introduction}
+## 1. INTRODUCTION
 
 ### 1.1 Objectif du Projet
 
@@ -43,39 +48,41 @@ Ce projet consiste à développer un **interpréteur de requêtes SQL simplifié
 
 ---
 
-## 2. DÉPÔT GITHUB {#github}
+## 2. DÉPÔT GITHUB
 
 Le code source complet, l'historique des versions et la documentation sont disponibles sur GitHub.
 
 **Lien du dépôt :** [https://github.com/Elhas-m/thl-mini-project.git](https://github.com/Elhas-m/thl-mini-project.git)
 
-![QR Code Dépôt GitHub](rapport_images/repo_qr.png)
+<p align="center">
+  <img src="rapport_images/repo_qr.png" alt="QR Code Dépôt GitHub" width="180"/>
+</p>
 
 ---
 
-## 3. ANALYSE DU CAHIER DES CHARGES {#analyse-cahier}
+## 3. ANALYSE DU CAHIER DES CHARGES
 
 ### 3.1 Vérification des Exigences
 
 #### ✅ Commandes SQL Supportées (100% Conforme)
 
 | Commande | Statut | Implémentation |
-|----------|--------|----------------|
-| CREATE TABLE | ✅ Implémenté | Création avec types de données |
-| INSERT INTO | ✅ Implémenté | Avec/sans spécification de champs |
-| SELECT | ✅ Implémenté | Avec clause WHERE optionnelle |
-| UPDATE | ✅ Implémenté | Modification avec WHERE |
-| DELETE | ✅ Implémenté | Suppression avec/sans WHERE |
-| DROP TABLE | ✅ Implémenté | Suppression de tables |
+|:---|:---:|:---|
+| `CREATE TABLE` | ✅ Implémenté | Création avec types de données |
+| `INSERT INTO` | ✅ Implémenté | Avec/sans spécification de champs |
+| `SELECT` | ✅ Implémenté | Avec clause WHERE optionnelle |
+| `UPDATE` | ✅ Implémenté | Modification avec WHERE |
+| `DELETE` | ✅ Implémenté | Suppression avec/sans WHERE |
+| `DROP TABLE` | ✅ Implémenté | Suppression de tables |
 
 #### ✅ Types de Données (100% Conforme)
 
 | Type | Statut | Description |
-|------|--------|-------------|
-| INT | ✅ | Entiers (positifs et négatifs) |
-| FLOAT | ✅ | Nombres réels |
-| VARCHAR(n) | ✅ | Chaînes de caractères avec taille |
-| BOOL | ✅ | Booléens (TRUE/FALSE) |
+|:---|:---:|:---|
+| `INT` | ✅ | Entiers (positifs et négatifs) |
+| `FLOAT` | ✅ | Nombres réels |
+| `VARCHAR(n)` | ✅ | Chaînes de caractères avec taille |
+| `BOOL` | ✅ | Booléens (TRUE/FALSE) |
 
 #### ✅ Opérateurs (100% Conforme)
 
@@ -84,11 +91,11 @@ Le code source complet, l'historique des versions et la documentation sont dispo
 
 ---
 
-## 4. ARCHITECTURE DU PROJET {#architecture}
+## 4. ARCHITECTURE DU PROJET
 
 ### 4.1 Structure des Fichiers
 
-```
+```text
 GLSimpleSQL/
 ├── src/                    # Code source
 │   ├── main.c
@@ -111,30 +118,22 @@ GLSimpleSQL/
 
 ### 4.2 Flux d'Exécution
 
-```
-Fichier SQL ou Entrée Utilisateur
-            ↓
-    [Analyseur Lexical (Flex)]
-         Tokens générés
-            ↓
-   [Analyseur Syntaxique (Bison)]
-      Arbre syntaxique
-            ↓
-    [Actions Sémantiques]
-  - Vérifications
-  - Table des symboles
-  - Calcul de statistiques
-            ↓
-      [Affichage Résultats]
-    - Statistiques
-    - Erreurs détectées
+```mermaid
+graph TD
+    A[Fichier SQL / Entrée] --> B[Analyseur Lexical Flex]
+    B --> C[Tokens]
+    C --> D[Analyseur Syntaxique Bison]
+    D --> E[Table des Symboles]
+    D --> F[Actions Sémantiques]
+    F --> G[Rapport de Statistiques]
+    F --> H[Gestion des Erreurs]
 ```
 
 ---
 
-## 5. PHASE 1 : ANALYSE LEXICALE (FLEX) {#phase-1}
+## 5. PHASE 1 : ANALYSE LEXICALE (FLEX)
 
-### 5.1 Implémentation dans sql_lexer.l
+### 5.1 Implémentation dans `sql_lexer.l`
 
 #### 📸 CODE : Reconnaissance des Mots-Clés SQL
 
@@ -223,7 +222,7 @@ STRING      '([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\"
 
 ---
 
-## 6. PHASE 2 : ANALYSE SYNTAXIQUE (BISON) {#phase-2}
+## 6. PHASE 2 : ANALYSE SYNTAXIQUE (BISON)
 
 ### 6.1 Grammaire Formelle Complète
 
@@ -252,7 +251,7 @@ STRING      '([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\"
 
 **✅ CONFORME :** Grammaire complète disponible dans `GRAMMAIRE_BNF.md`
 
-### 5.2 Implémentation dans sql_parser.y
+### 6.2 Implémentation dans `sql_parser.y`
 
 #### 📸 CODE : Règle CREATE TABLE
 
@@ -338,7 +337,7 @@ select_stmt:
 
 ---
 
-## 7. PHASE 3 : ACTIONS SÉMANTIQUES {#phase-3}
+## 7. PHASE 3 : ACTIONS SÉMANTIQUES
 
 ### 7.1 Table des Symboles
 
@@ -406,7 +405,7 @@ int add_table(SymbolTable *st, const char *table_name) {
 
 **✅ CONFORME :** Gestion dynamique avec détection de doublons.
 
-### 6.2 Vérifications Sémantiques
+### 7.2 Vérifications Sémantiques
 
 #### ✅ Vérification 1 : Table Inexistante
 
@@ -422,7 +421,7 @@ SELECT * FROM TableInexistante;
 ```
 
 **Résultat :**
-```
+```text
 ERREUR SÉMANTIQUE ligne 12 :
   La table 'TableInexistante' n'existe pas.
 ```
@@ -445,7 +444,7 @@ SELECT champInexistant FROM TestErreurs;
 ```
 
 **Résultat :**
-```
+```text
 ERREUR SÉMANTIQUE ligne 38 :
   Le champ 'champInexistant' n'existe pas dans la table 'TestErreurs'.
 ```
@@ -461,7 +460,7 @@ INSERT INTO TestErreurs VALUES (1, 'Nom');
 ```
 
 **Résultat :**
-```
+```text
 ERREUR SÉMANTIQUE ligne 57 :
   INSERT INTO TestErreurs : 2 valeurs fournies mais 3 champs attendus.
 ```
@@ -477,7 +476,7 @@ CREATE TABLE TestErreurs (num INT);
 ```
 
 **Résultat :**
-```
+```text
 ERREUR SÉMANTIQUE ligne 73 :
   La table 'TestErreurs' existe déjà.
 ```
@@ -492,14 +491,14 @@ DROP TABLE TableInexistante;
 ```
 
 **Résultat :**
-```
+```text
 ERREUR SÉMANTIQUE ligne 24 :
   La table 'TableInexistante' n'existe pas.
 ```
 
 ✅ **CONFORME**
 
-### 6.3 Statistiques sur les Requêtes
+### 7.3 Statistiques sur les Requêtes
 
 #### 📸 CODE : Structure QueryStats
 
@@ -523,7 +522,7 @@ SELECT nom, age FROM Etudiant WHERE age > 18;
 ```
 
 **Résultat :**
-```
+```text
 Requête SELECT analysée :
 - Table : Etudiant
 - Nombre de champs : 2 (nom, age)
@@ -542,7 +541,7 @@ INSERT INTO Etudiant VALUES (1, 'Diallo', 20);
 ```
 
 **Résultat :**
-```
+```text
 Requête INSERT analysée :
 - Table : Etudiant
 - Nombre de valeurs : 3
@@ -558,7 +557,7 @@ UPDATE Etudiant SET age = 21 WHERE id = 1;
 ```
 
 **Résultat :**
-```
+```text
 Requête UPDATE analysée :
 - Table : Etudiant
 - Nombre de champs à modifier : 1
@@ -569,7 +568,7 @@ Requête UPDATE analysée :
 
 ---
 
-## 8. TESTS ET VALIDATION {#tests}
+## 8. TESTS ET VALIDATION
 
 ### 8.1 Tests de Base (OBLIGATOIRES)
 
@@ -607,12 +606,12 @@ SELECT * FROM Personne WHERE salaire > 1000 AND actif = TRUE;
 
 **Résultat :** ✅ Succès - Comptage d'opérateurs logiques correct
 
-### 7.2 Tests d'Erreurs (OBLIGATOIRES)
+### 8.2 Tests d'Erreurs (OBLIGATOIRES)
 
 **Synthèse des Tests d'Erreurs :**
 
 | Type d'Erreur | Nombre de Tests | Résultat |
-|---------------|-----------------|----------|
+|:---|:---:|:---|
 | Table inexistante | 5 | ✅ Tous détectés |
 | Champ inexistant | 5 | ✅ Tous détectés |
 | Incohérence INSERT | 4 | ✅ Tous détectés |
@@ -621,7 +620,7 @@ SELECT * FROM Personne WHERE salaire > 1000 AND actif = TRUE;
 
 **Total : 29 tests d'erreurs - 100% de réussite**
 
-### 7.3 Tests Avancés
+### 8.3 Tests Avancés
 
 #### ✅ Case-Insensitivity
 
@@ -645,7 +644,7 @@ SELECT * FROM Table; -- Fin de ligne
 
 ---
 
-## 9. COMPILATION ET UTILISATION {#compilation}
+## 9. COMPILATION ET UTILISATION
 
 ### 9.1 Makefile Complet
 
@@ -684,7 +683,7 @@ test: $(TARGET)
 
 **✅ CONFORME :** Compilation automatisée complète
 
-### 8.2 Instructions d'Utilisation
+### 9.2 Instructions d'Utilisation
 
 ```bash
 # Compilation
@@ -704,12 +703,12 @@ make test
 
 ---
 
-## 10. CONCLUSION {#conclusion}
+## 10. CONCLUSION
 
 ### 10.1 Conformité au Cahier des Charges
 
 | Critère | Attendu | Réalisé | Conformité |
-|---------|---------|---------|------------|
+|:---|:---:|:---:|:---|
 | Analyseur lexical | ✓ | ✓ | 100% |
 | Reconnaissance tokens | Tous | Tous | 100% |
 | Gestion commentaires | ✓ | ✓ | 100% |
@@ -726,7 +725,7 @@ make test
 | Tests de base | ✓ | ✓ | 100% |
 | Tests d'erreurs | ✓ | ✓ | 100% |
 
-### 9.2 Points Forts du Projet
+### 10.2 Points Forts du Projet
 
 ✅ **Conformité totale** aux spécifications du cahier des charges  
 ✅ **Code bien structuré** et modulaire  
@@ -737,7 +736,7 @@ make test
 ✅ **Compilation propre** sans erreurs  
 ✅ **Makefile professionnel** avec cibles multiples  
 
-### 9.3 Fonctionnalités Bonus Implémentées
+### 10.3 Fonctionnalités Bonus Implémentées
 
 🌟 **Case-insensitivity** : Toutes les commandes acceptent majuscules/minuscules  
 🌟 **Commentaires multi-formats** : `--` et `/* */`  
@@ -745,7 +744,7 @@ make test
 🌟 **Affichage de la table des symboles** : Visualisation complète  
 🌟 **Statistiques détaillées** : Comptage précis des conditions et opérateurs  
 
-### 9.4 Qualité du Code
+### 10.4 Qualité du Code
 
 - ✅ **Aucune fuite mémoire** détectée
 - ✅ **Code commenté** en français et anglais
@@ -755,11 +754,11 @@ make test
 
 ---
 
-## 11. CAPTURES D'ÉCRAN DES EXÉCUTIONS {#captures}
+## 11. CAPTURES D'ÉCRAN DES EXÉCUTIONS
 
 ### 11.1 Exécution Réussie (test.sql)
 
-```
+```text
 === GLSimpleSQL Interpreter ===
 Interpréteur de requêtes SQL simplifiées
 Développé avec Flex et Bison
@@ -786,7 +785,7 @@ Requête SELECT analysée :
 
 ### 11.2 Détection d'Erreurs (test_errors.sql)
 
-```
+```text
 ERREUR SÉMANTIQUE ligne 12 :
   La table 'TableInexistante' n'existe pas.
 
@@ -805,7 +804,7 @@ ERREUR SYNTAXIQUE ligne 83 : syntax error
 
 ---
 
-## 12. DÉCLARATION DE CONFORMITÉ {#conformite}
+## 12. DÉCLARATION DE CONFORMITÉ
 
 Ce projet répond **intégralement** aux exigences du cahier des charges :
 
@@ -847,5 +846,4 @@ Ce projet répond **intégralement** aux exigences du cahier des charges :
 **Note finale :** Ce projet démontre une **maîtrise complète** des concepts de théorie des langages et de compilation, avec une implémentation professionnelle et exhaustive de toutes les fonctionnalités requises.
 
 ---
-
-*Fin du Rapport*
+<p align="right"><i>Fin du Rapport</i></p>
