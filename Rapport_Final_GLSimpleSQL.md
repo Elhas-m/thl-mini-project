@@ -13,13 +13,17 @@
 ## 📑 TABLE DES MATIÈRES
 
 1. [Introduction](#introduction)
-2. [Analyse du Cahier des Charges](#analyse-cahier)
-3. [Architecture du Projet](#architecture)
-4. [Phase 1 : Analyse Lexicale (Flex)](#phase-1)
-5. [Phase 2 : Analyse Syntaxique (Bison)](#phase-2)
-6. [Phase 3 : Actions Sémantiques](#phase-3)
-7. [Tests et Validation](#tests)
-8. [Conclusion](#conclusion)
+2. [Dépôt GitHub](#github)
+3. [Analyse du Cahier des Charges](#analyse-cahier)
+4. [Architecture du Projet](#architecture)
+5. [Phase 1 : Analyse Lexicale (Flex)](#phase-1)
+6. [Phase 2 : Analyse Syntaxique (Bison)](#phase-2)
+7. [Phase 3 : Actions Sémantiques](#phase-3)
+8. [Tests et Validation](#tests)
+9. [Compilation et Utilisation](#compilation)
+10. [Conclusion](#conclusion)
+11. [Captures d'Écran](#captures)
+12. [Déclaration de Conformité](#conformite)
 
 ---
 
@@ -39,9 +43,19 @@ Ce projet consiste à développer un **interpréteur de requêtes SQL simplifié
 
 ---
 
-## 2. ANALYSE DU CAHIER DES CHARGES {#analyse-cahier}
+## 2. DÉPÔT GITHUB {#github}
 
-### 2.1 Vérification des Exigences
+Le code source complet, l'historique des versions et la documentation sont disponibles sur GitHub.
+
+**Lien du dépôt :** [https://github.com/Elhas-m/thl-mini-project.git](https://github.com/Elhas-m/thl-mini-project.git)
+
+![QR Code Dépôt GitHub](rapport_images/repo_qr.png)
+
+---
+
+## 3. ANALYSE DU CAHIER DES CHARGES {#analyse-cahier}
+
+### 3.1 Vérification des Exigences
 
 #### ✅ Commandes SQL Supportées (100% Conforme)
 
@@ -70,26 +84,32 @@ Ce projet consiste à développer un **interpréteur de requêtes SQL simplifié
 
 ---
 
-## 3. ARCHITECTURE DU PROJET {#architecture}
+## 4. ARCHITECTURE DU PROJET {#architecture}
 
-### 3.1 Structure des Fichiers
+### 4.1 Structure des Fichiers
 
 ```
 GLSimpleSQL/
-├── src/
-│   ├── main.c              # Programme principal
-│   ├── sql_lexer.l         # Analyseur lexical (Flex)
-│   ├── sql_parser.y        # Analyseur syntaxique (Bison)
-│   ├── symbol_table.c      # Implémentation table des symboles
-│   └── symbol_table.h      # Interface table des symboles
-├── build/                  # Fichiers générés
-├── bin/                    # Exécutable
-├── Makefile               # Compilation automatisée
-├── GRAMMAIRE_BNF.md       # Grammaire formelle complète
-└── test*.sql              # Fichiers de tests
+├── src/                    # Code source
+│   ├── main.c
+│   ├── sql_lexer.l
+│   ├── sql_parser.y
+│   ├── symbol_table.c
+│   └── symbol_table.h
+├── tests/                  # Fichiers de tests SQL
+│   ├── test.sql
+│   ├── test_examples.sql
+│   └── test_errors.sql
+├── docs/                   # Documentation et PDF
+│   └── cahier_des_charges.pdf
+├── rapport_images/         # Images du rapport (QR Code, etc.)
+├── Makefile                # Compilation
+├── README.md               # Documentation principale
+├── GRAMMAIRE_BNF.md        # Grammaire formelle
+└── Rapport_Final_GLSimpleSQL.md # Rapport détaillé
 ```
 
-### 3.2 Flux d'Exécution
+### 4.2 Flux d'Exécution
 
 ```
 Fichier SQL ou Entrée Utilisateur
@@ -112,9 +132,9 @@ Fichier SQL ou Entrée Utilisateur
 
 ---
 
-## 4. PHASE 1 : ANALYSE LEXICALE (FLEX) {#phase-1}
+## 5. PHASE 1 : ANALYSE LEXICALE (FLEX) {#phase-1}
 
-### 4.1 Implémentation dans sql_lexer.l
+### 5.1 Implémentation dans sql_lexer.l
 
 #### 📸 CODE : Reconnaissance des Mots-Clés SQL
 
@@ -203,9 +223,9 @@ STRING      '([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\"
 
 ---
 
-## 5. PHASE 2 : ANALYSE SYNTAXIQUE (BISON) {#phase-2}
+## 6. PHASE 2 : ANALYSE SYNTAXIQUE (BISON) {#phase-2}
 
-### 5.1 Grammaire Formelle Complète
+### 6.1 Grammaire Formelle Complète
 
 #### 📸 GRAMMAIRE BNF (Extrait Principal)
 
@@ -318,9 +338,9 @@ select_stmt:
 
 ---
 
-## 6. PHASE 3 : ACTIONS SÉMANTIQUES {#phase-3}
+## 7. PHASE 3 : ACTIONS SÉMANTIQUES {#phase-3}
 
-### 6.1 Table des Symboles
+### 7.1 Table des Symboles
 
 #### 📸 CODE : Structure de Données
 
@@ -549,9 +569,9 @@ Requête UPDATE analysée :
 
 ---
 
-## 7. TESTS ET VALIDATION {#tests}
+## 8. TESTS ET VALIDATION {#tests}
 
-### 7.1 Tests de Base (OBLIGATOIRES)
+### 8.1 Tests de Base (OBLIGATOIRES)
 
 #### 📸 Test 1 : Création et Insertion
 
@@ -625,9 +645,9 @@ SELECT * FROM Table; -- Fin de ligne
 
 ---
 
-## 8. COMPILATION ET UTILISATION
+## 9. COMPILATION ET UTILISATION {#compilation}
 
-### 8.1 Makefile Complet
+### 9.1 Makefile Complet
 
 ```makefile
 CC = gcc
@@ -684,9 +704,9 @@ make test
 
 ---
 
-## 9. CONCLUSION {#conclusion}
+## 10. CONCLUSION {#conclusion}
 
-### 9.1 Conformité au Cahier des Charges
+### 10.1 Conformité au Cahier des Charges
 
 | Critère | Attendu | Réalisé | Conformité |
 |---------|---------|---------|------------|
@@ -735,16 +755,16 @@ make test
 
 ---
 
-## 10. CAPTURES D'ÉCRAN DES EXÉCUTIONS
+## 11. CAPTURES D'ÉCRAN DES EXÉCUTIONS {#captures}
 
-### 10.1 Exécution Réussie (test.sql)
+### 11.1 Exécution Réussie (test.sql)
 
 ```
 === GLSimpleSQL Interpreter ===
 Interpréteur de requêtes SQL simplifiées
 Développé avec Flex et Bison
 
-Lecture du fichier : test.sql
+Lecture du fichier : tests/test.sql
 
 Requête CREATE TABLE analysée avec succès.
 
@@ -764,7 +784,7 @@ Requête SELECT analysée :
   Aucune erreur détectée.
 ```
 
-### 10.2 Détection d'Erreurs (test_errors.sql)
+### 11.2 Détection d'Erreurs (test_errors.sql)
 
 ```
 ERREUR SÉMANTIQUE ligne 12 :
@@ -785,7 +805,7 @@ ERREUR SYNTAXIQUE ligne 83 : syntax error
 
 ---
 
-## 11. DÉCLARATION DE CONFORMITÉ
+## 12. DÉCLARATION DE CONFORMITÉ {#conformite}
 
 Ce projet répond **intégralement** aux exigences du cahier des charges :
 
